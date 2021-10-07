@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import heroBcg from "../assets/hero-bcg.jpeg";
-import heroBcg2 from "../assets/hero-bcg-2.jpeg";
+import rawsoy from "../assets/rawsoy.jfif";
+import plant from "../assets/plant.jfif";
 
 const Hero = () => {
 	return (
@@ -18,8 +18,14 @@ const Hero = () => {
 					muscle mass. Please let us know if you'd like one. We make
 					and deliver.
 				</p>
+				<Link className="btn hero-btn" to="/products">
+					shop now
+				</Link>
 			</article>
-			<article className="img-container"></article>
+			<article className="img-container">
+				<img src={rawsoy} alt="raw soy" className="main-img" />
+				<img src={plant} alt="plant" className="accent-img" />
+			</article>
 		</Wrapper>
 	);
 };
@@ -67,7 +73,7 @@ const Wrapper = styled.section`
 		}
 		.accent-img {
 			position: absolute;
-			bottom: 0;
+			bottom: -2rem;
 			left: 0;
 			width: 250px;
 			transform: translateX(-50%);

@@ -8,8 +8,6 @@ function App() {
 	return (
 		<Router>
 			<Navbar />
-			<Sidebar />
-			<Footer />
 			<Switch>
 				<Route path="/" exact>
 					<HomePage />
@@ -19,11 +17,13 @@ function App() {
 				</Route>
 				<Route path="/products">
 					<ProductsPage />
+					<Sidebar />
 				</Route>
 				<Route path="*">
 					<ErrorPage />
 				</Route>
 			</Switch>
+			<Footer />
 		</Router>
 	);
 }

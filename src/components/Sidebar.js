@@ -9,7 +9,32 @@ import CartButtons from "./CartButtons";
 import { useUserContext } from "../context/user_context";
 
 const Sidebar = () => {
-	return <h4>sidebar</h4>;
+	const { state, handleSidebar } = useProductsContext();
+
+	return (
+		<SidebarContainer>
+			<aside
+				className={`sidebar ${state.sidebarIsOpen && `show-sidebar`}`}
+			>
+				<div className="sidebar-header">
+					<img src={logo} alt="matrix" className="logo" />
+					<button className="close-btn" onClick={handleSidebar}>
+						<FaTimes />
+					</button>
+				</div>
+				<ul className="links">
+					{links.map((link) => {
+						return (
+							<li key={link.id}>
+								<Link to={link.url}>{link.text}</Link>
+							</li>
+						);
+					})}
+				</ul>
+				<CartButtons />
+			</aside>
+		</SidebarContainer>
+	);
 };
 
 const SidebarContainer = styled.div`
@@ -17,8 +42,9 @@ const SidebarContainer = styled.div`
 	.sidebar-header {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+		align-items: flex-start;
 		padding: 1rem 1.5rem;
+		position: relative;
 	}
 	.close-btn {
 		font-size: 2rem;
@@ -35,7 +61,9 @@ const SidebarContainer = styled.div`
 	}
 	.logo {
 		justify-self: center;
-		height: 45px;
+		width: 200px;
+		height: 50px;
+		object-fit: cover;
 	}
 	.links {
 		margin-bottom: 2rem;

@@ -9,6 +9,8 @@ import { useProductsContext } from "../context/products_context";
 import { useUserContext } from "../context/user_context";
 
 const Nav = () => {
+	const { handleSidebar } = useProductsContext();
+
 	return (
 		<NavContainer>
 			<div className="nav-center">
@@ -16,17 +18,23 @@ const Nav = () => {
 					<Link to="/">
 						<img src={logo} alt="comfy sloth" />
 					</Link>
+					<button
+						className="nav-toggle"
+						type="button"
+						onClick={handleSidebar}
+					>
+						<FaBars />
+					</button>
 				</div>
 				<ul className="nav-links">
-					<li>
-						<Link to="/">home</Link>
-					</li>
-					<li>
-						<Link to="/about">about</Link>
-					</li>
-					<li>
-						<Link to="/products">products</Link>
-					</li>
+					{links.map((link) => {
+						const { id, text, url } = link;
+						return (
+							<li key={id}>
+								<Link to={url}>{text}</Link>
+							</li>
+						);
+					})}
 				</ul>
 				<CartButtons />
 			</div>

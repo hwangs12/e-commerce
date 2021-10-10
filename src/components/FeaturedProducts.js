@@ -19,16 +19,22 @@ const FeaturedProducts = () => {
 		return <Error />;
 	}
 
+	console.log(featured);
 	return (
 		<Wrapper className="section">
 			<div className="title">
 				<h2>featured products</h2>
 				<div className="underline"></div>
 			</div>
-			<div className="section-center featured"></div>
-			<Link className="btn" to="/products">
-				all products
-			</Link>
+			<div className="section-center featured">
+				{featured &&
+					featured.slice(0, 3).map((item) => {
+						return <Product key={item.id} {...item} />;
+						// 	<Link className="btn" to={`/products/${}`}>
+						// 	all products
+						// </Link>
+					})}
+			</div>
 		</Wrapper>
 	);
 };

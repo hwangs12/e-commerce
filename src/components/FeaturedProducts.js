@@ -30,11 +30,11 @@ const FeaturedProducts = () => {
 				{featured &&
 					featured.slice(0, 3).map((item) => {
 						return <Product key={item.id} {...item} />;
-						// 	<Link className="btn" to={`/products/${}`}>
-						// 	all products
-						// </Link>
 					})}
 			</div>
+			<Link className="btn" to="/products">
+				all products
+			</Link>
 		</Wrapper>
 	);
 };

@@ -5,7 +5,6 @@ import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Product = ({ id, name, price, image }) => {
-	console.log(image);
 	return (
 		<Wrapper>
 			<div className="container">
@@ -16,7 +15,7 @@ const Product = ({ id, name, price, image }) => {
 			</div>
 			<footer>
 				<h5>{name}</h5>
-				<p>{price}</p>
+				<p>{formatPrice(price)}</p>
 			</footer>
 		</Wrapper>
 	);

@@ -24,10 +24,10 @@ function App() {
 				<Route path="/about">
 					<AboutPage />
 				</Route>
+				<Route path="/products/:id" children={<SingleProductPage />} />
 				<Route path="/products">
 					<ProductsPage />
 				</Route>
-				<Route path="/products/:id" children={<SingleProductPage />} />
 				<Route path="/cart">
 					<CartPage />
 				</Route>

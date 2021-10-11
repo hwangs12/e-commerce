@@ -1,6 +1,8 @@
 export const formatPrice = (price) => {
-	const decimal = price / 100;
-	return "$" + decimal.toFixed(2);
+	return new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+	}).format(price / 100);
 };
 
 export const getUniqueValues = () => {};

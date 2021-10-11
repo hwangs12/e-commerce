@@ -18,7 +18,7 @@ const initialState = {
 	products_loading: false,
 	products: [],
 	featured_products: [],
-	single_productt_loading: false,
+	single_product_loading: false,
 	single_product_error: false,
 	single_product: {},
 };
@@ -66,7 +66,9 @@ export const ProductsProvider = ({ children }) => {
 	};
 
 	return (
-		<ProductsContext.Provider value={{ ...state, handleSidebar }}>
+		<ProductsContext.Provider
+			value={{ ...state, handleSidebar, fetchSingleProduct }}
+		>
 			{children}
 		</ProductsContext.Provider>
 	);

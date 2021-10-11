@@ -1,14 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-const PageHero = ({ text }) => {
+const PageHero = ({ text, category }) => {
 	return (
 		<Wrapper>
 			<div className="section-center">
-				<h3>
-					<Link to="/">home</Link>
-					{`/ ${text}`}
-				</h3>
+				{!category ? (
+					<h3>
+						<Link to="/">home</Link>
+						{`/${text}`}
+					</h3>
+				) : (
+					<h3>
+						<Link to="/">home</Link>
+						<Link to={category}>{category}</Link>
+						{`/${text}`}
+					</h3>
+				)}
 			</div>
 		</Wrapper>
 	);

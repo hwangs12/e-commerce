@@ -66,7 +66,7 @@ const SingleProductPage = () => {
 					back to products
 				</Link>
 				<div className="product-center">
-					<ProductImages />
+					<ProductImages images={images} />
 					<section className="content">
 						<h2>{name}</h2>
 						<Stars />
@@ -85,7 +85,7 @@ const SingleProductPage = () => {
 							{company}
 						</p>
 						<hr></hr>
-						<AddToCart />
+						{parseInt(stock) > 0 && <AddToCart />}
 					</section>
 				</div>
 			</div>

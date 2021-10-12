@@ -33,6 +33,7 @@ const SingleProductPage = () => {
 		description,
 		reviews,
 		shipping,
+		colors,
 		stars,
 		stock,
 	} = product;
@@ -84,7 +85,9 @@ const SingleProductPage = () => {
 							{company}
 						</p>
 						<hr></hr>
-						{parseInt(stock) > 0 && <AddToCart />}
+						{parseInt(stock) > 0 && (
+							<AddToCart colors={colors} stock={stock} />
+						)}
 					</section>
 				</div>
 			</div>

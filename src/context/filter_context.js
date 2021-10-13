@@ -16,6 +16,7 @@ const initialState = {
 	filtered_products: [],
 	all_products: [],
 	viewType: "list",
+	sort: "price-lowest",
 };
 
 const FilterContext = React.createContext();
@@ -36,8 +37,16 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: SET_LISTVIEW });
 	};
 
+	const updateSort = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+		dispatch({ type: UPDATE_SORT, payload: { [name]: value } });
+	};
+
 	return (
-		<FilterContext.Provider value={{ ...state, viewGrid, viewList }}>
+		<FilterContext.Provider
+			value={{ ...state, viewGrid, viewList, updateSort }}
+		>
 			{children}
 		</FilterContext.Provider>
 	);

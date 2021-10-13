@@ -31,6 +31,13 @@ const filter_reducer = (state, action) => {
 			viewType: "list",
 		};
 	}
+
+	if (action.type === UPDATE_SORT) {
+		return {
+			...state,
+			...action.payload,
+		};
+	}
 	throw new Error(`No Matching "${action.type}" - action type`);
 };
 

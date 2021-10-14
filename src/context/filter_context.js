@@ -17,6 +17,16 @@ const initialState = {
 	all_products: [],
 	viewType: "list",
 	sort: "price-lowest",
+	filters: {
+		text: "",
+		category: "all",
+		company: "all",
+		color: "all",
+		min_price: 0,
+		max_price: 0,
+		price: 0,
+		shipping: false,
+	},
 };
 
 const FilterContext = React.createContext();
@@ -33,6 +43,12 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: SORT_PRODUCTS });
 	}, [products, state.sort]);
 
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch({ type: FILTER_PRODUCTS });
+		}, 1000);
+	}, [products, state.filters]);
+
 	const viewGrid = () => {
 		dispatch({ type: SET_GRIDVIEW });
 	};
@@ -47,9 +63,39 @@ export const FilterProvider = ({ children }) => {
 		dispatch({ type: UPDATE_SORT, payload: { [name]: value } });
 	};
 
+	const updateFilters = (e) => {
+		let name = e.target.name;
+		let value = e.target.value;
+		if (name === "category") {
+			value = e.target.textContent;
+		}
+		if (name === "color") {
+			value = e.target.dataset.color;
+		}
+		if (name === "price") {
+			value = Number(value);
+		}
+		if (name === "shipping") {
+			value = e.target.checked;
+		}
+
+		dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
+	};
+
+	const clearFilters = () => {
+		dispatch({ type: CLEAR_FILTERS });
+	};
+
 	return (
 		<FilterContext.Provider
-			value={{ ...state, viewGrid, viewList, updateSort }}
+			value={{
+				...state,
+				viewGrid,
+				viewList,
+				updateSort,
+				updateFilters,
+				clearFilters,
+			}}
 		>
 			{children}
 		</FilterContext.Provider>

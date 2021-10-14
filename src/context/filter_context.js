@@ -40,14 +40,11 @@ export const FilterProvider = ({ children }) => {
 	}, [products]);
 
 	useEffect(() => {
-		dispatch({ type: SORT_PRODUCTS });
-	}, [products, state.sort]);
-
-	useEffect(() => {
 		setTimeout(() => {
 			dispatch({ type: FILTER_PRODUCTS });
+			dispatch({ type: SORT_PRODUCTS });
 		}, 1000);
-	}, [products, state.filters]);
+	}, [products, state.filters, state.sort]);
 
 	const viewGrid = () => {
 		dispatch({ type: SET_GRIDVIEW });

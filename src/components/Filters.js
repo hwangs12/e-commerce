@@ -11,15 +11,26 @@ const Filters = () => {
 			category: categoryFromContext,
 			company: companyFromContext,
 			color: colorFromContext,
-			min_price,
-			max_price,
-			price,
+			min_price = 0,
+			max_price = 0,
+			price = 0,
 			shipping,
 		},
 		updateFilters,
 		clearFilters,
 		all_products,
 	} = useFilterContext();
+
+	// console.log(
+	// 	text,
+	// 	categoryFromContext,
+	// 	companyFromContext,
+	// 	colorFromContext,
+	// 	min_price,
+	// 	max_price,
+	// 	price,
+	// 	shipping
+	// );
 
 	const categories = getUniqueValues(all_products, "category");
 	const companies = getUniqueValues(all_products, "company");

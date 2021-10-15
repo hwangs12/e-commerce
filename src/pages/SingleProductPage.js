@@ -86,7 +86,12 @@ const SingleProductPage = () => {
 						</p>
 						<hr></hr>
 						{parseInt(stock) > 0 && (
-							<AddToCart colors={colors} stock={stock} />
+							<AddToCart
+								colors={colors}
+								stock={stock}
+								id={id}
+								product={product}
+							/>
 						)}
 					</section>
 				</div>

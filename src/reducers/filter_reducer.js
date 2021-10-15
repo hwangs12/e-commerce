@@ -71,7 +71,7 @@ const filter_reducer = (state, action) => {
 			);
 		}
 
-		console.log("triggered at TYPE SORT_PRODUCTS:", temp_products);
+		// console.log("triggered at TYPE SORT_PRODUCTS:", temp_products);
 
 		return { ...state, filtered_products: temp_products };
 	}
@@ -101,7 +101,7 @@ const filter_reducer = (state, action) => {
 			},
 		} = state;
 		let temp_products = [...all_products];
-		console.log("triggered at TYPE FILTER_PRODUCTS: ", temp_products);
+		// console.log("triggered at TYPE FILTER_PRODUCTS: ", temp_products);
 
 		if (text) {
 			temp_products = temp_products.filter((product) =>

@@ -28,8 +28,12 @@ export const CartProvider = ({ children }) => {
 		});
 	};
 
+	const clearCart = () => {
+		dispatch({ type: CLEAR_CART });
+	};
+
 	return (
-		<CartContext.Provider value={{ ...state, add_To_Cart }}>
+		<CartContext.Provider value={{ ...state, add_To_Cart, clearCart }}>
 			{children}
 		</CartContext.Provider>
 	);

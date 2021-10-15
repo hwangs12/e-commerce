@@ -11,6 +11,8 @@ const cart_reducer = (state, action) => {
 	if (action.type === ADD_TO_CART) {
 		const { id, color, amount, product } = action.payload;
 
+		console.log(product);
+
 		//cart state consists of 4 parts, cart, total_items, total_amount, shipping_fee
 
 		const itemToAdd = {
@@ -19,6 +21,8 @@ const cart_reducer = (state, action) => {
 			amount,
 			price: product.price,
 			name: product.name,
+			max: product.stock,
+			image: product.images[0].url,
 		};
 
 		console.log(">>> item to add:", itemToAdd);
@@ -32,7 +36,11 @@ const cart_reducer = (state, action) => {
 		if (existingItem) {
 			const tempCart = state.cart.map((item) => {
 				if (item.id === itemToAdd.id) {
-					return { ...item, amount: item.amount + itemToAdd.amount };
+					let newAmount = item.amount + itemToAdd.amount;
+					if (newAmount > itemToAdd.max) {
+						newAmount = itemToAdd.max;
+					}
+					return { ...item, amount: newAmount };
 				}
 				return item;
 			});
@@ -41,6 +49,13 @@ const cart_reducer = (state, action) => {
 		} else {
 			return { ...state, cart: [...state.cart, itemToAdd] };
 		}
+	}
+
+	if (action.type === CLEAR_CART) {
+		return {
+			...state,
+			cart: [],
+		};
 	}
 
 	return state;

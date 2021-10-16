@@ -81,10 +81,19 @@ const cart_reducer = (state, action) => {
 	}
 
 	if (action.type === COUNT_CART_TOTALS) {
-		const totalItems = state.cart.reduce((total, item) => {
-			return total + item.amount;
-		}, 0);
-		return { ...state, total_items: totalItems };
+		const totalItems = state.cart.reduce(
+			(total, item) => {
+				const { total_items, total_amount } = total;
+				const { amount, price } = item;
+				total = {
+					total_items: total_items + amount,
+					total_amount: total_amount + amount * price,
+				};
+				return total;
+			},
+			{ total_items: 0, total_amount: 0 }
+		);
+		return { ...state, ...totalItems };
 	}
 
 	if (action.type === REMOVE_CART_ITEM) {

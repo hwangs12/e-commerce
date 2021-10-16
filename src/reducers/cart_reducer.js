@@ -51,6 +51,43 @@ const cart_reducer = (state, action) => {
 		}
 	}
 
+	if (action.type === TOGGLE_CART_ITEM_AMOUNT) {
+		const { id, value } = action.payload;
+		if (value === "inc") {
+			const tempCart = state.cart.map((item) => {
+				if (item.id === id) {
+					let newAmount = item.amount + 1;
+					if (newAmount > item.max - 1) {
+						newAmount = item.max;
+					}
+					return { ...item, amount: newAmount };
+				}
+				return { ...item };
+			});
+			return { ...state, cart: tempCart };
+		} else {
+			const tempCart = state.cart.map((item) => {
+				if (item.id === id) {
+					let newAmount = item.amount - 1;
+					if (newAmount < 1) {
+						newAmount = 0;
+					}
+					return { ...item, amount: newAmount };
+				}
+				return { ...item };
+			});
+			return { ...state, cart: tempCart };
+		}
+	}
+
+	if (action.type === REMOVE_CART_ITEM) {
+		const { id } = action.payload;
+		const newCart = state.cart.filter((item) => {
+			return item.id !== id;
+		});
+		return { ...state, cart: newCart };
+	}
+
 	if (action.type === CLEAR_CART) {
 		return {
 			...state,

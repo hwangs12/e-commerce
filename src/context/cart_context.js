@@ -31,6 +31,7 @@ export const CartProvider = ({ children }) => {
 	console.log(">>> cart state from cart_context: ", state);
 
 	useEffect(() => {
+		dispatch({ type: COUNT_CART_TOTALS });
 		localStorage.setItem("cart", JSON.stringify(state.cart));
 	}, [state.cart]);
 

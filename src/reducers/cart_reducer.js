@@ -80,6 +80,13 @@ const cart_reducer = (state, action) => {
 		}
 	}
 
+	if (action.type === COUNT_CART_TOTALS) {
+		const totalItems = state.cart.reduce((total, item) => {
+			return total + item.amount;
+		}, 0);
+		return { ...state, total_items: totalItems };
+	}
+
 	if (action.type === REMOVE_CART_ITEM) {
 		const { id } = action.payload;
 		const newCart = state.cart.filter((item) => {

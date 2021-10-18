@@ -10,6 +10,7 @@ import {
 	CartPage,
 	SingleProductPage,
 	CheckoutPage,
+	PrivateRoute,
 } from "./pages/index";
 
 function App() {
@@ -31,9 +32,9 @@ function App() {
 				<Route path="/cart">
 					<CartPage />
 				</Route>
-				<Route path="/checkout">
+				<PrivateRoute path="/checkout">
 					<CheckoutPage />
-				</Route>
+				</PrivateRoute>
 				<Route path="*">
 					<ErrorPage />
 				</Route>

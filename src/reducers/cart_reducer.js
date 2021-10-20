@@ -93,7 +93,8 @@ const cart_reducer = (state, action) => {
 			},
 			{ total_items: 0, total_amount: 0 }
 		);
-		return { ...state, ...totalItems };
+		// return { ...state, ...totalItems };
+		return { ...state, total_amount: 100 };
 	}
 
 	if (action.type === REMOVE_CART_ITEM) {
